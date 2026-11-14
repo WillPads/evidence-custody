@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Custody Ledger</title>
+  <meta name="description" content="Keep a trustworthy chain-of-custody record for digital evidence: authorized custodians, every transfer, and proof that nothing was changed. Files never leave your computer.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231f3a5f'/><path d='M9 13h6v6H9zM17 13h6v6h-6z' fill='none' stroke='white' stroke-width='2.4'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="#" id="brand-home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7"/><path d="M9 13h6v6H9zM17 13h6v6h-6z"/></svg>
+        <div>
+          <span class="brand-name">Custody Ledger</span>
+          <span class="brand-sub">Chain of custody for digital evidence</span>
+        </div>
+      </a>
+      <div id="userbox" class="userbox" hidden>
+        <span class="muted">Acting as</span> <strong id="user-name"></strong>
+        <button id="btn-change-user" class="link" type="button">Change</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p id="boot" class="muted">Loading…</p>
+
+    <!-- =============================== START SCREEN =============================== -->
+    <section id="start" hidden>
+      <div class="hero">
+        <div class="hero-text">
+          <h1>A trustworthy chain of custody for your evidence</h1>
+          <p>Record every evidence file, control who may hold it, document each transfer, and confirm at any time
+            that nothing has been altered. Files stay on your computer and are never uploaded.</p>
+          <div class="hero-cta">
+            <button id="btn-demo" class="primary big" type="button">Try the sample case</button>
+            <a class="button big" href="#new-case">Start a new case</a>
+          </div>
+        </div>
+        <figure class="hero-video">
+          <video id="demo-video" controls preload="metadata" poster="demo/poster.png" playsinline>
+            <source src="demo/custody-ledger-demo.mp4" type="video/mp4">
+            Your browser can't play this video. <a href="demo/custody-ledger-demo.mp4">Download it</a> instead.
+          </video>
+          <figcaption class="muted small">Watch the 2-minute walkthrough</figcaption>
+        </figure>
+      </div>
+
+      <h2 class="section-title">How it works</h2>
+      <ol class="how">
+        <li><span class="num">1</span><div><strong>Authorize custodians</strong><p>List the people and organizations allowed to hold the evidence.</p></div></li>
+        <li><span class="num">2</span><div><strong>Log evidence</strong><p>Add each file with a category. The app records its unique digital fingerprint.</p></div></li>
+        <li><span class="num">3</span><div><strong>Transfer custody</strong><p>Release items only to authorized custodians, with the purpose recorded.</p></div></li>
+        <li><span class="num">4</span><div><strong>Verify anytime</strong><p>Instantly detect any altered file or tampered record.</p></div></li>
+      </ol>
+
+      <div class="grid two" id="new-case">
+        <form id="form-open" class="card">
+          <h2 class="card-title">Start a new case</h2>
+          <label>Case number <input name="caseId" required placeholder="e.g. CV-2026-0142"></label>
+          <label>Case title <span class="opt">(optional)</span> <input name="title" placeholder="e.g. Santos v. Reyes"></label>
+          <label>Your full name <input name="actor" required placeholder="e.g. Atty. Maria Cruz" autocomplete="name"></label>
+          <p class="muted small">You become the case lead and the first authorized custodian.</p>
+          <button class="primary">Start case</button>
+        </form>
+        <div class="card">
+          <h2 class="card-title">Continue a saved case</h2>
+          <p class="muted">Open a case file you saved earlier with <em>Save case file</em>. The app checks it for
+            tampering as soon as it opens.</p>
+          <label class="file-btn">Open case file<input id="import-start" type="file" accept=".json,application/json"></label>
+        </div>
+      </div>
+
+      <section id="samples" class="card samples">
+        <h2 class="card-title">Test it yourself with sample evidence</h2>
+        <p class="muted">All files are fictional. Some copies below are exact, others were secretly altered after the
+          originals were logged. Try to spot which ones before the app does.</p>
+        <ol class="steps">
+          <li><strong>Open the sample case.</strong> The five original files are already logged in it.
+            <button id="btn-sample-case" type="button" class="primary small-btn">Open sample case</button></li>
+          <li><strong>Download the copies below</strong>, or
+            <a href="sample-evidence/sample-evidence.zip" download>download everything as a .zip</a>.</li>
+          <li><strong>In the case, click <em>Verify a file</em></strong> and choose a copy you downloaded.</li>
+        </ol>
+        <div class="table-wrap">
+          <table class="sample-table">
+            <thead><tr><th>Copy to verify</th><th>What it is</th><th>What was done to it?</th></tr></thead>
+            <tbody>
+              <tr><td><a href="sample-evidence/2-copies-to-verify/payment_receipt.png" download>payment_receipt.png</a></td><td>Official receipt</td>
+                <td><details><summary>Reveal</summary>Amount changed from ₱12,500.00 to ₱72,500.00. <strong class="bad-text">Altered</strong></details></td></tr>
+              <tr><td><a href="sample-evidence/2-copies-to-verify/receipt_copy_for_client.png" download>receipt_copy_for_client.png</a></td><td>Official receipt</td>
+                <td><details><summary>Reveal</summary>Nothing. It's the original, only renamed. <strong class="ok-text">Verified</strong></details></td></tr>
+              <tr><td><a href="sample-evidence/2-copies-to-verify/cctv_still.png" download>cctv_still.png</a></td><td>CCTV still</td>
+                <td><details><summary>Reveal</summary>Timestamp changed from 21:42:17 to 19:42:17. <strong class="bad-text">Altered</strong></details></td></tr>
+              <tr><td><a href="sample-evidence/2-copies-to-verify/lease_agreement.txt" download>lease_agreement.txt</a></td><td>Contract of lease</td>
+                <td><details><summary>Reveal</summary>"thirty (30) days" changed to "ninety (90) days". <strong class="bad-text">Altered</strong></details></td></tr>
+              <tr><td><a href="sample-evidence/2-copies-to-verify/chat_export.txt" download>chat_export.txt</a></td><td>Chat thread</td>
+                <td><details><summary>Reveal</summary>One invisible space added. It looks identical. <strong class="bad-text">Altered</strong></details></td></tr>
+              <tr><td><a href="sample-evidence/2-copies-to-verify/bank_statement.csv" download>bank_statement.csv</a></td><td>Bank statement</td>
+                <td><details><summary>Reveal</summary>Nothing. Exact copy. <strong class="ok-text">Verified</strong></details></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="more">
+          <summary>Original files and comparison image</summary>
+          <ul class="file-links">
+            <li><a href="sample-evidence/1-originals/payment_receipt.png" download>payment_receipt.png</a> (original)</li>
+            <li><a href="sample-evidence/1-originals/cctv_still.png" download>cctv_still.png</a> (original)</li>
+            <li><a href="sample-evidence/1-originals/lease_agreement.txt" download>lease_agreement.txt</a> (original)</li>
+            <li><a href="sample-evidence/1-originals/chat_export.txt" download>chat_export.txt</a> (original)</li>
+            <li><a href="sample-evidence/1-originals/bank_statement.csv" download>bank_statement.csv</a> (original)</li>
+            <li><a href="sample-evidence/1-originals/sample-case.json" download>sample-case.json</a> (the case file)</li>
+            <li><a href="sample-evidence/comparison.png" target="_blank" rel="noopener">comparison.png</a>: originals and altered copies side by side</li>
+          </ul>
+        </details>
+      </section>
+    </section>
+
+    <!-- =============================== CASE SCREEN =============================== -->
+    <section id="case" hidden>
+      <div class="case-head">
+        <div>
+          <div class="eyebrow" id="case-number"></div>
+          <h1 id="case-title"></h1>
+        </div>
+        <div class="case-menu">
+          <button id="btn-export" type="button">Save case file</button>
+          <label class="file-btn">Open case file<input id="import-case" type="file" accept=".json,application/json"></label>
+          <button id="btn-close" class="ghost" type="button">Close case</button>
+        </div>
+      </div>
+
+      <div id="status" class="status" aria-live="polite"></div>
+      <p id="toast" class="toast" role="status" hidden></p>
+
+      <nav class="tabs" role="tablist" aria-label="Case sections">
+        <button role="tab" data-tab="overview" id="tab-overview">Overview</button>
+        <button role="tab" data-tab="evidence" id="tab-evidence">Evidence <span class="tab-count" id="count-evidence"></span></button>
+        <button role="tab" data-tab="custodians" id="tab-custodians">Custodians <span class="tab-count" id="count-custodians"></span></button>
+        <button role="tab" data-tab="log" id="tab-log">Custody log <span class="tab-count" id="count-log"></span></button>
+        <button role="tab" data-tab="integrity" id="tab-integrity">Integrity</button>
+      </nav>
+
+      <!-- Overview -->
+      <section class="panel" role="tabpanel" data-panel="overview" aria-labelledby="tab-overview">
+        <div class="actions">
+          <button class="action" id="act-add" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            <span><strong>Log evidence</strong><small>Record a new evidence file</small></span>
+          </button>
+          <button class="action" id="act-transfer" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h14M13 7l5 5-5 5"/></svg>
+            <span><strong>Transfer custody</strong><small>Release an item to an authorized custodian</small></span>
+          </button>
+          <button class="action" id="act-check" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>
+            <span><strong>Verify a file</strong><small>Confirm a copy is unaltered</small></span>
+          </button>
+        </div>
+
+        <div id="checklist" class="card checklist" hidden>
+          <h2 class="card-title">Getting started</h2>
+          <ol id="checklist-items"></ol>
+        </div>
+
+        <div class="stats" id="stats"></div>
+
+        <div class="card">
+          <div class="row-between">
+            <h2 class="card-title">Recent activity</h2>
+            <button class="link" type="button" data-goto="log">View full custody log →</button>
+          </div>
+          <ol id="recent" class="activity"></ol>
+        </div>
+      </section>
+
+      <!-- Evidence -->
+      <section class="panel" role="tabpanel" data-panel="evidence" aria-labelledby="tab-evidence" hidden>
+        <div class="toolbar">
+          <input id="evidence-search" type="search" placeholder="Search by file name, description or custodian" aria-label="Search evidence">
+          <select id="evidence-filter" aria-label="Filter by category"></select>
+          <button class="primary" type="button" data-act="add">Log evidence</button>
+        </div>
+        <div id="evidence-list" class="items"></div>
+        <div id="evidence-empty" class="empty" hidden></div>
+      </section>
+
+      <!-- Custodians -->
+      <section class="panel" role="tabpanel" data-panel="custodians" aria-labelledby="tab-custodians" hidden>
+        <div class="toolbar">
+          <p class="muted toolbar-text">Only people and organizations on this list can receive or hold evidence in this case.</p>
+          <button id="btn-add-custodian" type="button" class="primary">Add authorized custodian</button>
+        </div>
+        <div class="table-wrap">
+          <table class="custodians">
+            <thead><tr><th>Name</th><th>Role</th><th>Holding</th><th>Authorized</th><th>Status</th><th><span class="sr-only">Actions</span></th></tr></thead>
+            <tbody id="custodian-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Custody log -->
+      <section class="panel" role="tabpanel" data-panel="log" aria-labelledby="tab-log" hidden>
+        <div class="toolbar">
+          <select id="log-filter" aria-label="Filter entries">
+            <option value="all">All entries</option>
+            <option value="evidence_added">Evidence logged</option>
+            <option value="custody_transferred">Transfers</option>
+            <option value="custodians">Custodian changes</option>
+          </select>
+          <label class="toggle"><input type="checkbox" id="tech-toggle"> Show technical details</label>
+        </div>
+        <div class="card"><ol id="activity" class="activity"></ol></div>
+      </section>
+
+      <!-- Integrity -->
+      <section class="panel" role="tabpanel" data-panel="integrity" aria-labelledby="tab-integrity" hidden>
+        <div class="grid two">
+          <div class="card">
+            <h2 class="card-title">Verify a file</h2>
+            <p class="muted">Check whether a copy you have is exactly the file that was logged. Only the content
+              matters. Renaming a file doesn't affect the result.</p>
+            <button class="primary" type="button" data-act="check">Verify a file</button>
+          </div>
+          <div class="card receipt">
+            <h2 class="card-title">Integrity receipt</h2>
+            <p class="muted">A code that summarizes the whole custody log. Share it with your client. Anyone can later
+              enter it below to confirm the history up to that point was never rewritten.</p>
+            <div class="receipt-row">
+              <code id="receipt"></code>
+              <button id="btn-copy-receipt" type="button">Copy</button>
+            </div>
+            <form id="form-receipt" class="receipt-check">
+              <label>Verify a receipt code
+                <input name="code" placeholder="Paste a receipt code" autocomplete="off" spellcheck="false" required>
+              </label>
+              <button>Verify</button>
+            </form>
+            <div id="receipt-result" class="result" hidden></div>
+          </div>
+        </div>
+
+        <div class="card demo" id="demo">
+          <h2 class="card-title">Demonstration: how tampering is detected</h2>
+          <p class="muted">Each button secretly alters the saved records the way a dishonest person might. The status
+            panel at the top turns red and names the exact entry. Click <em>Restore original records</em> when finished.</p>
+          <div class="demo-actions">
+            <button type="button" id="t-edit">Alter an evidence description</button>
+            <button type="button" id="t-swap">Substitute a file and conceal it</button>
+            <button type="button" id="t-delete">Delete a log entry</button>
+            <button type="button" id="t-restore" class="primary">Restore original records</button>
+          </div>
+          <details class="advanced">
+            <summary>Advanced: edit the raw records</summary>
+            <textarea id="raw" spellcheck="false" aria-label="Raw case records (JSON)"></textarea>
+            <button type="button" id="t-apply">Apply changes</button>
+          </details>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- =============================== DIALOGS =============================== -->
+  <dialog id="dlg-add">
+    <form id="form-add">
+      <h2 class="dlg-title">Log evidence</h2>
+      <label>Category <select name="category" required></select></label>
+      <label class="other-field" hidden>Specify category
+        <input name="categoryOther" placeholder="e.g. Social media post" maxlength="60">
+      </label>
+      <label class="drop">
+        <input type="file" name="file" required>
+        <span class="drop-text">Click to choose a file<br><small>or drag it here</small></span>
+      </label>
+      <label>Description <span class="opt">(optional)</span>
+        <input name="desc" placeholder="e.g. Photos from the client's phone, taken 3 Nov 2026">
+      </label>
+      <p class="muted small">Recorded as received by <strong class="me"></strong>, who becomes its custodian.</p>
+      <div class="dlg-buttons">
+        <button type="button" class="ghost" data-close>Cancel</button>
+        <button class="primary">Log evidence</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-transfer">
+    <form id="form-transfer">
+      <h2 class="dlg-title">Transfer custody</h2>
+      <label>Evidence item <select name="id" required></select></label>
+      <p class="from">Released by <strong id="transfer-from"></strong> <span class="muted">(current custodian)</span></p>
+      <div id="transfer-fields">
+        <label>Receiving custodian <select name="to" required></select></label>
+        <label>Purpose of transfer <span class="opt">(optional)</span>
+          <input name="reason" placeholder="e.g. Forensic examination, court submission">
+        </label>
+      </div>
+      <div id="transfer-none" class="notice" hidden>
+        <p><strong>No other authorized custodians yet.</strong></p>
+        <p class="muted small">Evidence can only be released to someone on the authorized custodian list.</p>
+        <button type="button" id="btn-transfer-add-custodian">Add authorized custodian</button>
+      </div>
+      <div class="dlg-buttons">
+        <button type="button" class="ghost" data-close>Cancel</button>
+        <button class="primary" id="btn-confirm-transfer">Confirm transfer</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-custodian">
+    <form id="form-custodian">
+      <h2 class="dlg-title">Add authorized custodian</h2>
+      <p class="muted small">Once added, this person or organization can receive and hold evidence in this case.</p>
+      <label>Full name or organization <input name="name" required placeholder="e.g. NBI Cybercrime Division" maxlength="80"></label>
+      <label>Role <select name="role" required></select></label>
+      <label class="other-field" hidden>Specify role <input name="roleOther" placeholder="e.g. Records custodian" maxlength="60"></label>
+      <label>Reference <span class="opt">(optional)</span>
+        <input name="note" placeholder="e.g. IBP Roll No. 12345, accreditation number" maxlength="120">
+      </label>
+      <p class="muted small">Authorized by <strong class="me"></strong>.</p>
+      <div class="dlg-buttons">
+        <button type="button" class="ghost" data-close>Cancel</button>
+        <button class="primary">Add to list</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-revoke">
+    <form id="form-revoke">
+      <h2 class="dlg-title">Revoke authorization</h2>
+      <p>Remove <strong id="revoke-name"></strong> from the authorized custodian list? They will no longer be able to receive evidence.</p>
+      <label>Reason <span class="opt">(optional)</span> <input name="reason" placeholder="e.g. Engagement ended"></label>
+      <div class="dlg-buttons">
+        <button type="button" class="ghost" data-close>Cancel</button>
+        <button class="danger">Revoke</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-check">
+    <form id="form-check">
+      <h2 class="dlg-title" id="check-title">Verify a file</h2>
+      <p class="muted small" id="check-intro"></p>
+      <label class="drop">
+        <input type="file" name="file" required>
+        <span class="drop-text">Click to choose a file<br><small>or drag it here</small></span>
+      </label>
+      <div id="check-result" class="result" hidden></div>
+      <p class="muted small">Need files to test with? <a href="sample-evidence/sample-evidence.zip" download>Download the sample evidence</a>.</p>
+      <div class="dlg-buttons">
+        <button type="button" class="ghost" data-close>Close</button>
+        <button class="primary">Verify</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-user">
+    <form id="form-user">
+      <h2 class="dlg-title">Who is using the app?</h2>
+      <p class="muted small">Entries you make are recorded under this name. Only authorized custodians can make entries.</p>
+      <label>Acting as <select name="name" required></select></label>
+      <p class="muted small">Not listed? An authorized custodian must add you first.</p>
+      <div class="dlg-buttons">
+        <button type="button" class="ghost" data-close>Cancel</button>
+        <button class="primary">Continue</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-history">
+    <div>
+      <h2 class="dlg-title" id="history-title"></h2>
+      <ol id="history-list" class="activity"></ol>
+      <div class="dlg-buttons">
+        <button type="button" class="primary" data-close>Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="wrap muted small">
+    Files are fingerprinted (SHA-256) on your computer and never uploaded. Cases are stored in this browser only;
+    use <em>Save case file</em> to keep a copy. Sample data is fictional. This tool keeps an integrity record and is not legal advice.
+  </footer>
+</body>
+</html>

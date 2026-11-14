@@ -1,0 +1,9 @@
+/target
+# Local tool folders (not part of the project)
+/.remember
+/.claude
+# Logs created while trying the CLI locally, and the demo script's folder
+custody.json
+/demo
+# Note: web/pkg is NOT ignored on purpose. It holds the compiled WebAssembly,
+# and Vercel serves it as-is (Vercel's build machines don't have Rust).

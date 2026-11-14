@@ -1,0 +1,16 @@
+# A Cargo "workspace" groups several Rust packages (crates) that are built together.
+#   custody-core : the logic (records, hashing, the chain, verification). No I/O.
+#   custody-cli  : the command-line tool lawyers/staff would run.
+#   custody-web  : a thin WebAssembly wrapper so the same core runs in the browser.
+[workspace]
+resolver = "2"
+members = ["crates/custody-core", "crates/custody-cli", "crates/custody-web"]
+
+[workspace.package]
+version = "1.0.0"
+edition = "2021"
+license = "MIT"
+
+[profile.release]
+opt-level = "s" # smaller binaries, mostly helps the .wasm file size
+lto = true

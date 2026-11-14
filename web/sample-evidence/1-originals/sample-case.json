@@ -1,0 +1,151 @@
+{
+  "format_version": 2,
+  "records": [
+    {
+      "index": 0,
+      "timestamp": "2026-11-14T07:29:20Z",
+      "actor": "Atty. M. Cruz",
+      "event": {
+        "type": "case_opened",
+        "case_id": "CV-2026-0187",
+        "case_title": "Santos v. Dela Cruz (sample)"
+      },
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "hash": "3f6e40c1fc360607390e53ebab11c56a40ca05e7162a0000adb90b67093456fe"
+    },
+    {
+      "index": 1,
+      "timestamp": "2026-11-14T07:29:20Z",
+      "actor": "Atty. M. Cruz",
+      "event": {
+        "type": "custodian_authorized",
+        "name": "J. Reyes",
+        "role": "Paralegal",
+        "note": "Firm staff ID 0042"
+      },
+      "prev_hash": "3f6e40c1fc360607390e53ebab11c56a40ca05e7162a0000adb90b67093456fe",
+      "hash": "720c18e09e7d2bd374a0f1b8e021bcb9a56ff3066d104416222fde7d9304fedd"
+    },
+    {
+      "index": 2,
+      "timestamp": "2026-11-14T07:29:20Z",
+      "actor": "Atty. M. Cruz",
+      "event": {
+        "type": "custodian_authorized",
+        "name": "NBI Cybercrime Division",
+        "role": "Law enforcement",
+        "note": "Accredited cybercrime unit"
+      },
+      "prev_hash": "720c18e09e7d2bd374a0f1b8e021bcb9a56ff3066d104416222fde7d9304fedd",
+      "hash": "713fe638705242ba391982c17ea62ffdeda4808ffce6b9148070bd7f6fbe4ead"
+    },
+    {
+      "index": 3,
+      "timestamp": "2026-11-14T07:29:20Z",
+      "actor": "Atty. M. Cruz",
+      "event": {
+        "type": "evidence_added",
+        "evidence_id": 1,
+        "category": "Document",
+        "file_name": "lease_agreement.txt",
+        "file_hash": "bf3d8c1d19dd6d8f3fb48b9fdfdd0549fdf8349f5b48bae467511eeecd1b06f3",
+        "size_bytes": 1096,
+        "description": "Signed contract of lease, Unit 4B"
+      },
+      "prev_hash": "713fe638705242ba391982c17ea62ffdeda4808ffce6b9148070bd7f6fbe4ead",
+      "hash": "bd124decd033b34fcf90391dba28850a2948a64ccb593f8824aa9a1d09e8a483"
+    },
+    {
+      "index": 4,
+      "timestamp": "2026-11-14T07:29:20Z",
+      "actor": "Atty. M. Cruz",
+      "event": {
+        "type": "evidence_added",
+        "evidence_id": 2,
+        "category": "Financial record",
+        "file_name": "payment_receipt.png",
+        "file_hash": "9b0f743f93c9898644604faa0aea76b958381b44594e6d604e0267e9847c6c38",
+        "size_bytes": 39558,
+        "description": "Official receipt No. 004127 for October rent"
+      },
+      "prev_hash": "bd124decd033b34fcf90391dba28850a2948a64ccb593f8824aa9a1d09e8a483",
+      "hash": "384a885296add474a2ba09a0d9f48dcfce1defa02366ff7656bd70918979240c"
+    },
+    {
+      "index": 5,
+      "timestamp": "2026-11-14T07:29:20Z",
+      "actor": "Atty. M. Cruz",
+      "event": {
+        "type": "evidence_added",
+        "evidence_id": 3,
+        "category": "Financial record",
+        "file_name": "bank_statement.csv",
+        "file_hash": "9ee389236caec878a9a03de90d42d440e3f02c39f2fe7f053addd0d72d10386d",
+        "size_bytes": 478,
+        "description": "Lessee's bank statement, November 2026"
+      },
+      "prev_hash": "384a885296add474a2ba09a0d9f48dcfce1defa02366ff7656bd70918979240c",
+      "hash": "967ad54c9503f8a7d63943fe3fd28010b87ce33df9db6554e54c3e356392a3e7"
+    },
+    {
+      "index": 6,
+      "timestamp": "2026-11-14T07:29:20Z",
+      "actor": "Atty. M. Cruz",
+      "event": {
+        "type": "evidence_added",
+        "evidence_id": 4,
+        "category": "Email or message",
+        "file_name": "chat_export.txt",
+        "file_hash": "f69552d45737297711e58affafdcb61014e306cb4e9f12cc2f7d4d29e45d8e7e",
+        "size_bytes": 570,
+        "description": "Chat thread between lessor and lessee"
+      },
+      "prev_hash": "967ad54c9503f8a7d63943fe3fd28010b87ce33df9db6554e54c3e356392a3e7",
+      "hash": "455362453b007ea08ebe5b7f2d0bc81d732e502ea666e7ef2074af5bccc0b041"
+    },
+    {
+      "index": 7,
+      "timestamp": "2026-11-14T07:29:20Z",
+      "actor": "Atty. M. Cruz",
+      "event": {
+        "type": "evidence_added",
+        "evidence_id": 5,
+        "category": "CCTV / surveillance footage",
+        "file_name": "cctv_still.png",
+        "file_hash": "e43e33a36e762dbdebc978ba1ed378f015268b15f224c09f848ecb16ea83008a",
+        "size_bytes": 28079,
+        "description": "Still from north gate camera, 3 Nov 2026"
+      },
+      "prev_hash": "455362453b007ea08ebe5b7f2d0bc81d732e502ea666e7ef2074af5bccc0b041",
+      "hash": "fbf27f75e9cfc66dd9c3889e1bd4f43f666d0268902f112e0db35dc157384a8f"
+    },
+    {
+      "index": 8,
+      "timestamp": "2026-11-14T07:29:20Z",
+      "actor": "Atty. M. Cruz",
+      "event": {
+        "type": "custody_transferred",
+        "evidence_id": 5,
+        "from": "Atty. M. Cruz",
+        "to": "NBI Cybercrime Division",
+        "reason": "Authentication of footage"
+      },
+      "prev_hash": "fbf27f75e9cfc66dd9c3889e1bd4f43f666d0268902f112e0db35dc157384a8f",
+      "hash": "db98c51ab5dc436a9327250f5f721de2a2699c8dc1adb6187c201072ee02f589"
+    },
+    {
+      "index": 9,
+      "timestamp": "2026-11-14T07:29:20Z",
+      "actor": "Atty. M. Cruz",
+      "event": {
+        "type": "custody_transferred",
+        "evidence_id": 4,
+        "from": "Atty. M. Cruz",
+        "to": "J. Reyes",
+        "reason": "Preparing exhibit"
+      },
+      "prev_hash": "db98c51ab5dc436a9327250f5f721de2a2699c8dc1adb6187c201072ee02f589",
+      "hash": "a9ebfc3586fe6c90755e17dff32662f566a3f73e2909cea7b95d4a613a196ea5"
+    }
+  ]
+}

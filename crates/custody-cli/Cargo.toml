@@ -1,0 +1,17 @@
+[package]
+name = "custody-cli"
+description = "Command-line tool for the tamper-evident evidence custody ledger"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+# The installed program is called `custody`.
+[[bin]]
+name = "custody"
+path = "src/main.rs"
+
+[dependencies]
+custody-core = { path = "../custody-core" }
+clap = { version = "4", features = ["derive"] }
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+colored = "3"

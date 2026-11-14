@@ -1,0 +1,10 @@
+FICTIONAL SAMPLE - FOR DEMONSTRATION ONLY
+Chat export: "Unit 4B Rent" (exported 4 Nov 2026)
+
+[02/11/2026, 18:04] Maria Santos: Hi Juan, October rent is still unpaid.
+[02/11/2026, 18:11] Juan Dela Cruz: Sorry po, I know. Payroll was delayed.
+[02/11/2026, 18:12] Maria Santos: When can you settle it?
+[02/11/2026, 18:20] Juan Dela Cruz: I will pay on Friday. 
+[02/11/2026, 18:21] Maria Santos: Okay. Please send the receipt after.
+[03/11/2026, 21:40] Juan Dela Cruz: Paid at the hardware store counter, OR No. 004127.
+[03/11/2026, 21:43] Maria Santos: Received, thank you.

@@ -1,0 +1,16 @@
+[package]
+name = "custody-web"
+description = "WebAssembly bindings so the custody ledger runs in the browser"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+# "cdylib" = produce a library other languages can load (here: JavaScript via .wasm)
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+custody-core = { path = "../custody-core" }
+wasm-bindgen = "0.2"
+serde = "1"
+serde_json = "1"
