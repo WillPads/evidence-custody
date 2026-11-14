@@ -108,7 +108,7 @@ scripts/          build-web.ps1 / .sh   compile the Rust core to WebAssembly
                   make-sample-evidence.mjs  generates the sample originals and altered copies
                   record-demo.mjs       records the demo video (headless Edge + MediaRecorder)
                   fix-mp4-duration.mjs  writes the real length into the recorded MP4's header
-vercel.json       Serves web/ as a static site with security headers
+web/vercel.json   Security headers for the site (Vercel's Root Directory = web)
 ```
 
 **Design decisions**
@@ -227,8 +227,11 @@ cargo install wasm-bindgen-cli --version 0.2.130 --locked    # once
 powershell -ExecutionPolicy Bypass -File scripts/build-web.ps1   # or: sh scripts/build-web.sh
 ```
 
-**Deploy**: push to GitHub, import the repo in Vercel (no settings needed; `vercel.json` handles it),
-or with the CLI: `npm i -g vercel` then `vercel --prod` from the project folder.
+**Deploy**: push to GitHub and import the repo in Vercel, then in **Settings → Build and Deployment**
+set **Root Directory** to `web` and **Framework Preset** to **Other** (no build or install command).
+Pointing Vercel at `web/` matters: if it sees `Cargo.toml` at the repo root, it treats the project as Rust
+server functions and publishes nothing. `web/vercel.json` adds the security headers.
+With the CLI instead: `npm i -g vercel`, then `vercel --prod` from inside `web/`.
 
 ---
 
